@@ -10,7 +10,6 @@ const callApi = async (callCount, acctHash, resolve) => {
 
   axios.get(process.env.TWILIO_2FA_PATH + `/get-auth-code/${acctHash}`)
     .then((response) => {
-      console.log(response.data); // number
       if (response.status === 200 && response.data) {
         if (response.data) {
           resolve(response.data);
@@ -34,17 +33,8 @@ const callApi = async (callCount, acctHash, resolve) => {
 };
 
 const getAuthCode = async (attempts, acctHash) => {
-  console.log('get auth code called', attempts);
   return new Promise(resolve => {
-    let authCode;
-
-    authCode = callApi(attempts, acctHash, resolve);
-
-    // if (!authCode) {
-    //   resolve(false);
-    // } else {
-    //   resolve(authCode);
-    // }
+    callApi(attempts, acctHash, resolve);
   });
 };
 

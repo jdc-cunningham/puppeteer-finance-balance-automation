@@ -3,8 +3,10 @@ require('dotenv').config({
 });
 const { constants } = require('crypto');
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const port = 5000;
+const { pool } = require('./dbConnect');
 
 let https;
 let https_options;
@@ -39,18 +41,75 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(bodyParser.json());
+
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
+
 // routes
 app.post('/', (req, res) => {
-  console.log('post');
-  res.status(200).send('');
+  const smsBody = req.body.Body; // my Twilio PHP code sends this from Twilio numbers forward to custom url
+
+  // this is an array of strings
+  const acctHashes = process.env.ACCT_HASHES.split(',');
+  let acctMatched;
+  let acctFound = false;
+
+  // originally used some here but need value, not that many accts to run through
+  acctHashes.forEach(acct => {
+    if (smsBody.indexOf(`${acct}: `) !== -1) {
+      acctMatched = acct;
+      acctFound = true;
+    }
+  });
+
+  if (acctFound) {
+    const authCode = smsBody.split(`${acctMatched}: `)[1].trim(); // assumes perfectly setup no extra lines
+
+    // this is a check to make sure auth code is an integer when parsed
+    // means auth validation would keep running until times out 10mins sucks
+    if (!Number.isInteger(parseInt(authCode))) {
+      res.status(200).send('');
+    }
+
+    pool.query(
+      `UPDATE auth_codes SET 2fa_code = ? WHERE acct_hash = ?`,
+      [authCode, acctMatched],
+      (err, sqlRes) => {
+        if (err) {
+          res.status(200).send('');
+        } else {
+          res.status(200).send('auth code updated');
+        }
+      }
+    );
+  } else {
+    res.status(200).send('');
+  }
 });
 
 app.get('/',(req, res) => {
   res.status(200).send('live');
 });
 
-app.get('/get-auth-code/bofa',(req, res) => {
-  res.status(200).send('030303');
+app.get('/get-auth-code/:acct',(req, res) => {
+  const acct = req.params['acct'];
+
+  pool.query(
+    `SELECT 2fa_code FROM auth_codes WHERE acct_hash = ?`, // ehh "hash"
+    [acct],
+    (err, qres) => {
+      if (err) {
+        res.status(200).send(''); // will keep retrying, have to add the accts as processes are added
+      } else {
+        console.log(qres);
+        res.status(200).send('');
+      }
+    }
+  );
 });
 
 if (process.env.NODE_ENV === "live") {

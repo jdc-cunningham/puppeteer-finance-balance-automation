@@ -4,6 +4,7 @@ require('dotenv').config({
 
 const puppeteer = require('puppeteer');
 const { getAuthCode } = require('../../auth-looper.js');
+const { twilioSendSms } = require('../../twilio/send_msg.js');
 
 const getBofaBalance = async () => {
   const user = process.env.BANK_OF_AMERICA_USER;
@@ -26,6 +27,7 @@ const getBofaBalance = async () => {
 
   await page.$eval('#btnARContinue', el => el.click());
   // trigger auth code message and wait for person to respond
+  twilioSendSms('2FA request for bofa \r\n respond with: bofa: auth');
   let attempts = 0;
   const authCode = await getAuthCode(attempts, 'bofa');
   // see step_3
