@@ -6,3 +6,5 @@ This API is the bridge between the automated Puppeteer acct login and me who get
 I then take the 2FA code, respond to the Twilio number which goes to this API and then this API forwards that auth code to the waiting Puppeteer script.
 After the script receives the code, it then continues interacting with the webpage to get the balance.
 
+### DB
+If you use the Twilio route(probably not) you will need a MySql/Maria database. The database name is `twilio_2fa_api` and then you can import the included `auth_codes.sql` table.

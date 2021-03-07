@@ -95,6 +95,16 @@ app.get('/',(req, res) => {
   res.status(200).send('live');
 });
 
+const removeLastAuthCode = (acct) => {
+  pool.query(
+    `UPDATE auth_codes SET 2fa_code = '' WHERE acct_hash = ?`,
+    [acct],
+    (err, sqlRes) => {
+      // cool
+    }
+  );
+}
+
 app.get('/get-auth-code/:acct',(req, res) => {
   const acct = req.params['acct'];
 
@@ -105,8 +115,12 @@ app.get('/get-auth-code/:acct',(req, res) => {
       if (err) {
         res.status(200).send(''); // will keep retrying, have to add the accts as processes are added
       } else {
-        console.log(qres);
-        res.status(200).send('');
+        if (qres.length) {
+          removeLastAuthCode(acct); // supposed to be empty until I update it by text response to Twilio
+          res.status(200).send(qres[0]['2fa_code']);
+        } else {
+          res.status(200).send('');
+        }
       }
     }
   );

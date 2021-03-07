@@ -1,5 +1,6 @@
 const dotenv = require('dotenv');
-dotenv.config({ path: '../.env' });
+dotenv.config({ path: '.env' });
+
 const twilioSid = process.env.TWILIO_SID;
 const twilioToken = process.env.TWILIO_TOKEN;
 const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
