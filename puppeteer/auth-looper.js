@@ -1,7 +1,6 @@
 const axios = require('axios').default;
 
 const callApi = async (callCount, acctHash, resolve) => {
-  console.log('call api', callCount);
   callCount += 1;
   if (callCount === 119) {
     resolve(false); // last attempt

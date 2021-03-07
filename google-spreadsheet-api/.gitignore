@@ -1,0 +1,7 @@
+# files
+.env
+*.png
+pup*.json
+
+# folders
+/node_modules

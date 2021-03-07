@@ -105,7 +105,7 @@ const removeLastAuthCode = (acct) => {
   );
 }
 
-app.get('/get-auth-code/:acct',(req, res) => {
+app.get('/get-auth-code/:acct', (req, res) => {
   const acct = req.params['acct'];
 
   pool.query(
