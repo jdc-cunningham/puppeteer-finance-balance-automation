@@ -1,5 +1,5 @@
 ### About
 This is how you fill in some spreadsheet's columns.
 
-### Need oAuth
-Go to this [page](https://developers.google.com/sheets/api/quickstart/nodejs) to setup the oAuth stuff under your account.
+### This uses service accounts
+You'll have to [make one](https://console.cloud.google.com/iam-admin/serviceaccounts), set a key and also share the spreadsheet to this email.
