@@ -1,0 +1,24 @@
+{
+  "name": "puppeteer-finance-balance-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "puppeteer": "^8.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdc-cunningham/puppeteer-finance-balance-automation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdc-cunningham/puppeteer-finance-balance-automation/issues"
+  },
+  "homepage": "https://github.com/jdc-cunningham/puppeteer-finance-balance-automation#readme"
+}
