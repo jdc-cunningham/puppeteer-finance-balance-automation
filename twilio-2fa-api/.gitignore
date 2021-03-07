@@ -1,0 +1,6 @@
+# files
+.env
+*.png
+
+# folders
+/node_modules
