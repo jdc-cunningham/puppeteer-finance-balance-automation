@@ -16,3 +16,5 @@ Below is a graphic on how the workflow is setup.
 At the bare minimum you would have to go into the `puppeteer` folder and do `npm install`.
 
 This repo only shows one example(for BofA current web UI as of 03/07/2021). For any other account you'd have to make your own. I'm not sharing mine for obvious reasons unfortunately. I am manually finding `DOM` elements and values vs. a faster way like through a point-click Chrome extension.
+
+See my writeup on [medium](https://jdc-cunningham.medium.com/automating-my-finances-with-puppeteer-47bf2563fec0) here about this project.
