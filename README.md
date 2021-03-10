@@ -19,7 +19,7 @@ This repo only shows one example(for BofA current web UI as of 03/07/2021). For 
 
 Note that in order for the 2FA part to work you would have to have your own Twilio setup running and the API [here](https://github.com/jdc-cunningham/puppeteer-finance-balance-automation/blob/master/twilio-2fa-api/index.js#L108) has to be running as well.
 
-This is my current Twilio endpoint that's receiving all my Twilio text messages. I just added a conditional branch in here to forward it to a new url for the API mentioned above(in this repo). Then I parse it for the string matching eg. `bofa: ######`. If there is an authcode, it's saved into the API's db and then that request that's waiting above can get it.
+This is my current [Twilio endpoint](https://github.com/jdc-cunningham/twilio-php-custom-sms/blob/master/index.php#L18) that's receiving all my Twilio text messages. I just added a conditional branch in here to forward it to a new url for the API mentioned above(in this repo). Then I parse it for the string matching eg. `bofa: ######`. If there is an authcode, it's saved into the API's db and then that request that's waiting above can get it.
 
 ### More info
 
