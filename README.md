@@ -1,8 +1,11 @@
 ### About
 This shows how to use Puppeteer to login to your finances and extract data such as the acct balance. Then send it to a Google spreadsheet. This also shows a solution to handling 2FA using Twilio as the bridge between the automated script and the user. In my case I used Twilio since I don't have any mobile apps that I've written with pub-sub events like push notifications. So I've been using Twilio as an app by Android SMS.
 
-See the demonstration below:
+See the demonstration below: <br>
 [![youtube video thumb](./yt-thumb.JPG)](https://www.youtube.com/watch?v=NDXLrB7KgkQ)
+
+<br><br>
+
 This video is not that great but gives you a better idea of what's going on in this implementation.
 
 ![demo showing Puppeteer working](./demo.gif)
