@@ -4,7 +4,7 @@ This shows how to use Puppeteer to login to your finances and extract data such 
 See the demonstration below: <br>
 [![youtube video thumb](./yt-thumb.JPG)](https://www.youtube.com/watch?v=NDXLrB7KgkQ)
 
-<br><br>
+<br>
 
 This video is not that great but gives you a better idea of what's going on in this implementation.
 
