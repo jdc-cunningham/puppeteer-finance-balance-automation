@@ -126,6 +126,9 @@ app.get('/get-auth-code/:acct', (req, res) => {
   );
 });
 
+// this is an old way to do SSL
+// you can just use a regular port (else condition)
+// and use say NGINX Let's Encrypt to forward the SSL to this port in the server block
 if (process.env.NODE_ENV === "live") {
   console.log('live');
   https.createServer(https_options, app).listen(443);
