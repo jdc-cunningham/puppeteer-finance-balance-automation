@@ -7,7 +7,7 @@ require('dotenv').config({
 });
 
 const { google } = require('googleapis');
-const privateKey = require(`./${process.env.PRIVATE_KEY_JSON_PATH}`);
+const privateKey = require(`./${process.env.PRIVATE_KEY_JSON_PATH}`); // GCP IAM Service Accounts
 const sheets = google.sheets('v4');
 
 const jwtClient = new google.auth.JWT(
